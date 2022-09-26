@@ -1,0 +1,46 @@
+@import "../themes/variable";
+
+footer {
+  background-color: $bg-c3-light;
+  margin-top: 106px;
+  .footer-top {
+    padding: 20px 0 0px 0;
+    background-color: $bg-c2-light;
+    .container {
+      margin-bottom: 5px;
+      padding: 0 15px;
+      .get-help {
+        // margin: 0 auto;
+        // border-left: 1px solid #cccccc;
+        h4 {
+          text-align: start;
+          @include text($text-3xl, $text-bold, $text-c1-dark);
+        }
+        ul {
+          margin-top: 15px ;
+          padding-left: -2rem;
+          text-decoration: none;
+          list-style: none;
+          li {
+            text-align: start;
+            margin-right: 30px; 
+            @include text($text-base, $text-light, $text-c1-dark);
+          }
+        }
+      }
+      .border-fix {
+        border-left: 1px solid #cccccc;
+      }
+    }
+  }
+  .text-center {
+    // width: 100%;
+    box-shadow: 4px -8px 12px 5px rgba(88, 86, 86, 0.485) ;
+    background-color: rgb(209, 204, 204);
+    padding-top: 10px;
+    // border-top: $bg-c2-dark solid 1px; 
+    p {
+      @include text($text-xl, $text-extraLight, $text-c1-dark);
+    }
+  }
+}

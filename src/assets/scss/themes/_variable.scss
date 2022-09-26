@@ -1,0 +1,107 @@
+/*
+    Khởi tạo các giá trị(variable) và các hàm trong scss cho phép thêm các giá trị mặc định của tham số (mixin)
+
+*/
+
+// color : màu
+$text-c1-primary: #2a73dd;
+$text-c1-dark: #000;
+$text-c2-dark: rgb(107, 105, 105);
+$text-c1-light: #F5F5F5;
+$text-c2-light: #F7F7F7;
+$text-c3-light:  #CBC9C9;
+$text-c4-light:#D9D9D9;
+$text-c1-pink: #AE18E2;
+$text-c1-green:  #1ED90E;
+$text-c1-red:#FC0303;
+
+//background : màu phong nền
+$bg-c1-primary: #F8B653;
+$bg-c1-secondary: #dcd1f3;
+$bg-c1-pink: #AE18E2;
+$bg-c1-light: #fff;
+$bg-c2-light:#F8F8F8;
+$bg-c3-light: #cccccc;
+$bg-c4-light: #DEDDDC;
+$bg-c5-light:#D9D9D9;
+$bg-c1-dark:#000;
+$bg-c2-dark: rgba(0, 0, 0, .3);
+$bg-c3-dark: #e2e2e2;
+$bg-c1-brown:  #E1B067;
+$bg-c1-red:red;
+$bg-c1-green: #1ED90E;
+$bg-c1-linear:linear-gradient(180deg, #6181F3 0%, #7C97F5 99.48%);
+$bg-c2-linear:linear-gradient(270deg, rgba(62, 32, 248, 0.9) 5.14%, #D017EE 89.71%);
+
+// text-size : kích thước của chữ 
+$text-xs: 10px;
+$text-base: 16px;
+$text-xl: 18px;
+$text-2xl: 20px;
+$text-24xl:24px;
+$text-3xl: 30px;
+$text-4xl: 40px;
+$text-5xl: 50px;
+$text-6xl: 60px;
+
+// text-weights : độ dày của chữ 
+$text-thin:100;
+$text-extraLight:200;
+$text-light: 300;
+$text-regular: 400;
+$text-medium: 500;
+$text-semiBold: 600;
+$text-bold: 700;
+$text-extraBold: 800;
+
+// ----------------- Size-desktop -----------------
+// size responsive
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;   
+
+// ----------------- Mixin -------------------
+
+// function text 
+@mixin text($fz,$fw,$fc) {
+    font-size: $fz;
+    font-weight: $fw;
+    color: $fc;
+}
+
+// function responsive
+
+@mixin res-sm {
+    @media (max-width: #{$sm}) {
+      @content;
+    }
+  }
+  
+  @mixin res-md {
+    @media (max-width: #{$md}) {
+      @content;
+    }
+  }
+  
+  @mixin res-lg {
+    @media (max-width: #{$lg}) {
+      @content;
+    }
+  }
+  
+  @mixin res-xl {
+    @media (max-width: #{$xl}) {
+      @content;
+    }
+  }
+  
+  @mixin res-xxl {
+    @media (max-width: #{$xxl}) {
+      @content;
+    }
+  }
+
+
+
