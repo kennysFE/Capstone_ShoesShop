@@ -35,10 +35,20 @@ export default function Header() {
               </NavLink>
             </li>
             <li className="nav-item">
+                <NavLink className="nav-link text-white" to="/profile">
+                  Profile
+                </NavLink>
+              </li>
+            <li className="nav-item">
               <NavLink className="nav-link " to="/carts" aria-current="page">
                 <i class="fa fa-cart-plus"></i> (1)
               </NavLink>
             </li>
+            <li className="nav-item">
+                <NavLink className="nav-link text-white" to="/search">
+                  <i className="fa-solid fa-magnifying-glass"></i>
+                </NavLink>
+              </li>
           </ul>
           <form className="d-flex my-2 my-lg-0">
             <input

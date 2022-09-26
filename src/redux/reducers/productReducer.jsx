@@ -1,113 +1,101 @@
-import { createSlice } from '@reduxjs/toolkit'
-import {http} from '../../util/config'
+import { createSlice } from "@reduxjs/toolkit";
+// import axios from "axios";
+import { http } from "../../util/config";
+
 const initialState = {
-    arrProduct: [],
-    productDetail: {},
-    cart: [],
-}
-
-const productReducer = createSlice({
-  name: 'productReducer',
-  initialState,
-  reducers: {
-    // Get All Product 
-    getProduct: (state, action) => {
-        // Get data from payload
-        const arrProduct = action.payload;
-        // update with new state
-        state.arrProduct = arrProduct;
-    },
-
-    // Get detail shoes form page hom
-    getDetail: (state, action) => {
-        // Get data from payload
-        const productDetail = action.payload;
-        // update with new state detail shoes
-        state.productDetail = productDetail;
-    },
-
-    // Add Card
-    addProd: (state, action) => {
-        // get data from payload
-        let prod = action.payload;
-
-        // variable get all card from 
-        let cardUpdata = [...state.card];
-
-        prod = { ...prod, count: 1};
-        let sp = cardUpdata.find((p) => p.id === prod.id);
-        if (sp) {
-            sp.count += 1;
-        }else {
-            cardUpdata.push(prod);
-        }
-        state.card = cardUpdata;
-    },
-    // Delete card 
-    deleteProd: (state, action) => {
-        let delProdId = action.payload;
-        let cardUpdate = [...state.card]
-        cardUpdate = cardUpdate.filter((sp) => sp.id !== delProdId);
-        state.card = cardUpdate;
-    },
-
-    // Decrease and Increase quanlity
-    increaseDecrease:  (state, action) => {
-        let {idClick, num } = action.payload;
-        let cardUpdate = [...state.card];
-        let sp = cardUpdate.find(sp => sp.id === idClick);
-        if (sp) {
-            sp.count += num;
-            if (sp.count < 1) {
-                if (window.confirm('Delete card from shopping card')){
-                    cardUpdate = cardUpdate.filter((sp) => sp.id !== idClick)
-                }else {
-                    sp.count -= num;
-                }
-            }
-        }
-        state.card = cardUpdate;
-    }
-  }
-});
-
-export const {getProduct,getDetail, addProd, deleteProd, increaseDecrease} = productReducer.actions
-
-export default productReducer.reducer
-
-// ------------ action thunk (api) ----------------
-
-
-
-// 1. Get all product from Api
-export const getProductApi = () => {
-
-    return async dispatch => {
-        try {
-            //call api
-            const result = await http.get('/product');
-            //Lấy dữ liệu về đưa lên redux
-            const action = getProduct(result.data.content);
-            dispatch(action);
-        }catch(err) {
-            console.log(err);
-        }
-    };
-
+  arrProduct: [],
+  productDetail: {},
+  cart: [],
 };
 
-// 2. Get infor product from Api
+const productReducer = createSlice({
+  name: "productReducer",
+  initialState,
+  reducers: {
+    //lay all product
+    getProduct: (state, action) => {
+      //lay du lieu tu payload
+      const arrProduct = action.payload;
+      // cap nhat lai state
+      state.arrProduct = arrProduct;
+    },
+    //lay detail
+    getDetail: (state, action) => {
+      //buoc 4: Sau khi nhan duoc du lieu tu dispatch 2
+      const productDetail = action.payload;
+      state.productDetail = productDetail;
+    },
+    //them vao cart
+    addProd: (state, action) => {
+      let prod = action.payload;
+      let cartUpdate = [...state.cart];
+      prod = { ...prod, count:1 };
+      let sp = cartUpdate.find((p) => p.id === prod.id);
+      if (sp) {
+        sp.count += 1;
+      } else {
+        cartUpdate.push(prod);
+      }
+
+      state.cart = cartUpdate;
+    },
+    //xoa khoi cart
+    deleteProd: (state, action) => {
+      let delProdId = action.payload;
+      let cartUpdate = [...state.cart];
+      cartUpdate = cartUpdate.filter((sp) => sp.id !== delProdId);
+      state.cart = cartUpdate;
+    },
+    //tang giam so luong
+    increaseDecrease: (state, action) => {
+      let { idClick, num } = action.payload;
+      //console.log({ idClick, num });
+      let cartUpdate = [...state.cart]
+      let sp =cartUpdate.find(sp => sp.id === idClick)
+      if(sp){
+        sp.count += num
+        if(sp.count < 1){
+          if(window.confirm('Xóa khỏi giỏ hàng')){
+            cartUpdate = cartUpdate.filter(sp => sp.id !== idClick)
+          }else {
+            sp.count -= num
+          }
+        }
+      }
+      state.cart = cartUpdate
+    },
+  },
+});
+
+export const { getProduct, getDetail, addProd, deleteProd, increaseDecrease } =
+  productReducer.actions;
+
+export default productReducer.reducer;
+
+export const getProductApi = () => {
+  return async (dispatch) => {
+    try {
+      const result = await http.get('/Product')
+      //sau khi lay du lieu tu api ve thi set State
+      //setArrProduct(result.data.content);
+      const action = getProduct(result.data.content);
+      dispatch(action);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 export const getProductDetail = (id) => {
-    return async dispatch => {
-        try {
-            // call Api 
-            const result = await http.get(`/Product/getbyid?id=${id}`);
-
-            const action = getDetail(result.data.content);
-            dispatch(action);
-        } catch (err) {
-            console.log(err)
-        }
-    };
+  return async (dispatch) => {
+    //Buoc 2: Thuc thi thunk
+    try {
+      let result = await http.get(`/Product/getbyid?id=${id}`);
+      //Buoc 3: Sau khi co du lieu dispatch lan 2
+      const action = getDetail(result.data.content);
+      dispatch(action);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 };

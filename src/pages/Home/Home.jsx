@@ -20,8 +20,8 @@ export default function Home() {
   });const renderProduct = () => {
     return arrProduct.map((item, index) => {
       return (
-        <div className="col-lg-4 col-12 mt-2" key={index}>
-          <div className="card shadow p-3 mb-4 bg-body rounded border-white">
+        <div className="form_Product col-lg-4 col-12 mt-2" key={index}>
+          <div className="Card_Product card shadow p-3 mb-4 bg-body rounded border-white">
             <img src={item.image} alt={item.name} />
             <div className="card-body">
               <div className="d-flex flex-column">
@@ -42,9 +42,9 @@ export default function Home() {
   return (
     <div>
       <Carousel />
-      <div className="container">
-        <h2 className="text-center m-4">-Product-</h2>
-        <div className="row">{renderProduct()}</div>
+      <div className="fixone ">
+        <h2 className="product_feature m-4">Product Feature</h2>
+        <div className="container row">{renderProduct()}</div>
       </div>
     </div>
   );

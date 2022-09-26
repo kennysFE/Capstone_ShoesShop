@@ -1,1 +1,16 @@
 @import '../themes/variable';
+// @import '../base/base';
+
+.container {
+    // position: relative;
+    // width: 100%;
+}.product_feature {
+    // position: absolute;
+    left: 70px;
+    padding-left: 40px;
+    // top: 15px;
+    width: 50%;
+    height: 4rem;
+    background: $bg-c2-linear;
+    @include text($text-5xl,$text-extraLight,$bg-c1-light);
+}

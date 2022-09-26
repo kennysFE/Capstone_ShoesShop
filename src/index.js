@@ -13,12 +13,19 @@ import HomeTemplate from './templates/HomeTemplate';
 //Cấu hình redux
 import {Provider} from 'react-redux'
 import { store } from './redux/configStore';
+
+
+//history
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
+export const history = createBrowserHistory({ window });
 //Cấu hình react router dom
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <HistoryRouter history={history}>
       <Routes>
         <Route path="" element={<HomeTemplate />} >
           <Route index element={<Home />}></Route>
@@ -33,7 +40,7 @@ root.render(
           <Route path='*' element={<Navigate to="" />}></Route>
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   </Provider>
 );
 
