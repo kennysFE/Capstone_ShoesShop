@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProductApi } from '../../redux/reducers/productReducer';
 import { NavLink } from "react-router-dom";
 import Carousel from '../../components/Background_Carousel/BgCarousel';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Home() {
   const { arrProduct } = useSelector((state) => state.productReducer);
@@ -15,25 +16,38 @@ export default function Home() {
     dispatch(actionThunk);
   }
 
+  const renderHeart = () => {
+    return (
+      <>
+        <FontAwesomeIcon icon="fa-solid fa-heart" className="heart" />
+      </>
+    );
+  };
+
   useEffect(() => {
     getAllProducts();
-  });const renderProduct = () => {
+  });
+  
+  const renderProduct = () => {
     return arrProduct.map((item, index) => {
       return (
         <div className="form_Product col-lg-4 col-12 mt-2" key={index}>
-          <div className="Card_Product card shadow p-3 mb-4 bg-body rounded border-white">
+          <div className="Card_Product card shadow bg-body rounded border-white">{renderHeart()}
             <img src={item.image} alt={item.name} />
             <div className="card-body">
-              <div className="d-flex flex-column">
+              <div className="card_infor d-flex flex-column">
                 <div>
-                  <p className="fw-semibold">{item.name}</p>
-                  <p className="fw-semibold">{item.price}$</p>
+                  <p className="card_name">{item.name}</p>
+                  <p className="card_des fw-semibold">{item.description}</p>
                 </div>
-                <NavLink className="btn btn-dark" to={`/detail/${item.id}`}>
-                  View detail
-                </NavLink>
               </div>
             </div>
+                <div className='d-flex'>
+                <NavLink className="card_detail flex-fill btn btn-dark" to={`/detail/${item.id}`}>
+                  Buy now
+                </NavLink>
+                <p className="card_price p-2 flex-fill">{item.price}$</p>
+                </div>
           </div>
         </div>
       );
@@ -42,8 +56,8 @@ export default function Home() {
   return (
     <div>
       <Carousel />
-      <div className="fixone ">
-        <h2 className="product_feature m-4">Product Feature</h2>
+        <h2 className="product_feature">Product Feature</h2>
+        <div className="fixone ">
         <div className="container row">{renderProduct()}</div>
       </div>
     </div>

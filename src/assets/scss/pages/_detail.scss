@@ -1,0 +1,40 @@
+@import "../themes/variable";
+
+.active-size {
+    background: linear-gradient(270deg, rgba(62, 32, 248, 0.9) 5.14%, #d017ee 89.71%) !important;
+    color: white !important;
+}
+
+.size {
+    margin-top: 20px;
+    display: flex;
+    .size-num {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        height: 50px;
+        width: 50px;
+        background: $bg-c4-light;
+        margin-right: 21px;
+        p {
+            display: inline-block;
+            @include text($text-3xl, $text-regular, $text-c1-primary);
+            margin: 0 auto;
+        }
+    }
+}
+.card_price_detail {
+    @include text($text-3xl, $text-bold, $bg-c1-red);
+    margin-top: 15px;
+}
+.gain {
+    background: $bg-c1-linear;
+    // @include text($text-3xl,$text-bold,$bg-c2-linear);
+}
+.addToCart {
+    background: $bg-c2-linear;
+    width: 10rem;
+    height: 3rem;
+    @include text($text-2xl, $text-medium, $bg-c1-light);
+}
