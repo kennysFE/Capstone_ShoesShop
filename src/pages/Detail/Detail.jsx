@@ -2,14 +2,40 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
-import { addProd, getProductDetail } from "../../redux/reducers/productReducer";
+import { addProd, getProductApi, getProductDetail } from "../../redux/reducers/productReducer";
 // import { renderHeart} from "../Home/Home"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getStore, USER_LOGIN } from "../../util/config";
 
 export default function Detail() {
   // Create useState size and quantity
   const [sizeState, setSizeState] = useState("36");
   const [quantityState, setQuantityState] = useState(1);
+
+  // change quantity shoes
+  const handleChangeQuantity = (number) => {
+    if (quantityState < 2 && number === -1) {
+      return alert("Không thể chỉnh số lượng dưới 1");
+    }
+    setQuantityState(quantityState + number);
+  };
+
+  // update cart
+  const handleAddToCart = () => {
+    if (!getStore(USER_LOGIN)) {
+      dispatch(getProductApi());
+    }
+    dispatch(addProd({ ...productDetail, sizeState, quantityState }));
+  };
+
+
+
+
+
+
+
+
+
 
   // changde state size shoes 
   const renderProductSize = (listSize) => {
@@ -117,10 +143,12 @@ export default function Detail() {
           </select> */}
           <div className="mt-3">
             <button className="gain btn btn-light me-2" onClick={() => {
-
+              handleChangeQuantity(1)
             }}>+</button>
             <span>{quantityState}</span>
-            <button className="gain btn btn-light ms-2">-</button>
+            <button className="gain btn btn-light ms-2" onClick={() => {
+              handleChangeQuantity(-1)
+            }}>-</button>
           </div>
           <button
             className="addToCart btn btn-dark mt-3"

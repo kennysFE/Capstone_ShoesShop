@@ -3,8 +3,9 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { loginApi, fbLoginApi } from "../../redux/reducers/userReducer";
 import { FacebookLogin } from "react-facebook-login";
-import { loginApi } from "../../redux/reducers/userReducer";
+// import { loginApi } from "../../redux/reducers/userReducer";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -27,6 +28,12 @@ export default function Login() {
       dispatch(loginApi(values));
     },
   });
+
+    // response for facebook login
+    const responseFacebook = (response) => {
+      console.log(response);
+      dispatch(fbLoginApi(response));
+    };
 
   return (
     <div className="container">

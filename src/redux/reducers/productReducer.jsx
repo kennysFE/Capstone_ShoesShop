@@ -37,7 +37,7 @@ const productReducer = createSlice({
         cartUpdate.push(prod);
       }
 
-      state.cart = cartUpdate;
+      state.cart = cartUpdate;      
     },
     //xoa khoi cart
     deleteProd: (state, action) => {
@@ -64,10 +64,14 @@ const productReducer = createSlice({
       }
       state.cart = cartUpdate
     },
+
+    clearListCartTempAction: (state, action) => {
+      state.cart = [];
+    },
   },
 });
 
-export const { getProduct, getDetail, addProd, deleteProd, increaseDecrease } =
+export const { getProduct, getDetail, addProd, deleteProd, increaseDecrease, clearListCartTempAction } =
   productReducer.actions;
 
 export default productReducer.reducer;

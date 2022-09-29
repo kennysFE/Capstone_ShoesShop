@@ -152,9 +152,7 @@ export default function Register() {
                   type="radio"
                   name="gender"
                   id="gender1"
-                  // defaultValue="option1"
-                  // defaultChecked 
-                  value={frm.values.gender}
+                  value={true}
                 />
                 <label className="form-check-label" htmlFor="gender1">
                   Male
@@ -168,9 +166,7 @@ export default function Register() {
                   type="radio"
                   name="gender"
                   id="gender2"
-                  // defaultValue="option1"
-                  // defaultChecked
-                  value={frm.values.gender = false}
+                  value={false}
                 />
                 <label className="form-check-label" htmlFor="gender2">
                   Female

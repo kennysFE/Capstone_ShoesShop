@@ -1,7 +1,91 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { clearListCartTempAction } from "../../redux/reducers/productReducer";
+import { logOutUserAction } from "../../redux/reducers/userReducer";
 
 export default function Header() {
+  const { userLogin } = useSelector((state) => state.userReducer);
+  const { cart } = useSelector((state) => state.productReducer);
+  const dispatch = useDispatch();
+
+  const renderCart = () => {
+    if (!userLogin) {
+      return (
+        <>
+          <NavLink className="me-3" to={"/login"}>
+            <FontAwesomeIcon
+              icon="fa-solid fa-cart-shopping"
+              className="me-1"
+            />
+
+            <span>(0)</span>
+          </NavLink>
+        </>
+      );
+    }
+    return (
+      <>
+        <NavLink className="me-3" to={"/carts"}>
+          <FontAwesomeIcon icon="fa-solid fa-cart-shopping" className="me-1" />(
+          {/* {countCart(userLogin, cart)}) */}
+        </NavLink>
+      </>
+    );
+  };
+  const renderLoginItem = () => {
+    if (!userLogin) {
+      return (
+        <>
+          <li className="nav-item">
+            <NavLink className="login nav-link text-white" to={"/login"}>
+              Login
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="register-menu nav-link text-white"
+              to={"/register"}
+            >
+              Register
+            </NavLink>
+          </li>
+        </>
+      );
+    }
+    return (
+      <>
+        <li className="nav-item">
+          <NavLink to={"/profile"} className="nav-link text-white">
+            {" "}
+            <FontAwesomeIcon icon="fa-solid fa-user" className="me-1" />
+            {userLogin.name}
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink
+            to={"/index"}
+            onClick={logOut}
+            className="nav-link text-white"
+          >
+            <FontAwesomeIcon
+              icon="fa-solid fa-right-from-bracket"
+              className="me-1"
+            />
+            LogOut
+          </NavLink>
+        </li>
+      </>
+    );
+  };
+
+  const logOut = () => {
+    dispatch(logOutUserAction(userLogin));
+    dispatch(clearListCartTempAction(cart));
+    alert("Đăng xuất hoàn tất");
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -24,31 +108,37 @@ export default function Header() {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink className="nav-link " to="/login" aria-current="page">
                 Login
               </NavLink>
-            </li>
-            <li className="nav-item">
+            </li> */}
+            {/* <li className="nav-item">
               <NavLink className="nav-link " to="/register" aria-current="page">
                 Register
               </NavLink>
-            </li>
+            </li> */}
             <li className="nav-item">
-                <NavLink className="nav-link text-white" to="/profile">
+              <NavLink className="nav-link text-white" to="/profile">
+                Profile
+              </NavLink>
+            </li>
+
+            {/* <NavLink className="nav-link text-white" to="/profile">
                   Profile
-                </NavLink>
-              </li>
+                </NavLink> */}
+            {renderLoginItem()}
+
             <li className="nav-item">
               <NavLink className="nav-link " to="/carts" aria-current="page">
                 <i class="fa fa-cart-plus"></i> (1)
               </NavLink>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
                 <NavLink className="nav-link text-white" to="/search">
                   <i className="fa-solid fa-magnifying-glass"></i>
                 </NavLink>
-              </li>
+              </li> */}
           </ul>
           <form className="d-flex my-2 my-lg-0">
             <input
@@ -63,13 +153,13 @@ export default function Header() {
               Search
             </button>
           </form>
-        </div>  
+        </div>
       </nav>
       <nav className="header">
         <div className="header_link">
           <ul className="nav">
             <li className="nav-item">
-              <a className="nav-link"  href="#">
+              <a className="nav-link" href="#">
                 Home
               </a>
             </li>

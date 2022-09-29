@@ -35,8 +35,8 @@ root.render(
           <Route path='detail'>
             <Route path=':id' element={<Detail />}></Route>
           </Route>
-          <Route path='profile' element={<Profile />}></Route>
           <Route path='carts' element={<Carts />}></Route>
+          <Route path='profile' element={<Profile />}></Route>
           <Route path='*' element={<Navigate to="" />}></Route>
         </Route>
       </Routes>

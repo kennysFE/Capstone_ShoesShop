@@ -42,7 +42,6 @@ export default function Cart() {
             </td>
             <td>{prod.name}</td>
             <td>{prod.price}</td>
-            <td>{prod.size}</td>
             <td>
               <button className="btn btn-dark mx-2" onClick={() => {
                 upDown({idClick:prod.id,num:1})
@@ -87,7 +86,6 @@ export default function Cart() {
               <th>Image</th>
               <th>Name</th>
               <th>Price</th>
-              <th>Size</th>
               <th>Quatity</th>
               <th>Total</th>
               <th>Action</th>

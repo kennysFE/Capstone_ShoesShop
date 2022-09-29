@@ -1,0 +1,129 @@
+@import "../themes/variable";
+
+.profile {
+  .profile-upper {
+    .profile-header {
+      background: $bg-c2-linear;
+      h3 {
+        height: 74px;
+        line-height: 74px;
+        align-items: center;
+        font-weight: $text-regular;
+        color: #fffefe;
+        font-size: $text-3xl;
+        padding-left: 34px;
+      }
+    }
+    .container {
+      .profile-upper-form {
+        position: relative;
+        border-bottom: 1px solid #dedddc;
+        .profile-content {
+          margin-top: 26px;
+          .profile-avatar {
+            img {
+              border-radius: 100%;
+            }
+          }
+          .profile-form {
+            .profile-row {
+              .form-group {
+                label {
+                  font-weight: 500;
+                  font-size: 18px;
+                  line-height: 24px;
+                  letter-spacing: 0.135px;
+                  color: rgba(0, 0, 0, 0.6);
+                  margin-bottom: 5px;
+                  margin-top: 13px;
+                }
+                input {
+                  background: $bg-c1-linear;
+                  border-radius: 4px 4px 0px 0px;
+                  padding: 16px 12px 14px 14px;
+                  width: 443px;
+                  height: 54px;
+                }
+              }
+              .form-gender {
+                margin-top: 47px;
+                #gender-content {
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: flex-start;
+                  .gender-option {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    margin-right: 36px;
+                    .gender-click {
+                      text-align: center;
+                      margin-right: 28px;
+                      input {
+                        transform: scale(2);
+                      }
+                      label {
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 20px;
+                        letter-spacing: 0.25px;
+                        color: rgba(0, 0, 0, 0.6);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .btn-profile {
+          position: absolute;
+          right: 12%;
+          bottom: -23%;
+        }
+      }
+    }
+  }
+  .profile-under {
+    // .container {
+    //   .ant-tabs-tab:hover {
+    //     color: #dd2aed;
+    //   }
+    //   .ant-tabs-tab-btn {
+    //     font-size: $text-3xl;
+    //     &:hover {
+    //       color: #dd2aed;
+    //     }
+    //   }
+    //   .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    //     color: #dd2aed;
+    //   }
+    //   th{
+    //     background-color: #d9d9d9;
+    //   }
+    // }
+  }
+}
+
+.btn-submit { 
+  font-weight: $text-medium;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #6200ee;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12),
+    0px 2px 4px rgba(0, 0, 0, 0.2);
+  border: #6200ee;
+  border-radius: 50px;
+  margin-left: 50%;
+  padding: 16px 28px;
+  margin-bottom: 77px;
+}
+.btn-submit:hover{
+background-color: #6200ee;
+opacity: 0.9;
+}
