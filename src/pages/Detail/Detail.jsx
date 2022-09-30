@@ -2,17 +2,85 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
-import { addProd, getProductApi, getProductDetail } from "../../redux/reducers/productReducer";
+import { addProd, addToCart, getProductApi, getProductDetail } from "../../redux/reducers/productReducer";
 // import { renderHeart} from "../Home/Home"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getStore, USER_LOGIN } from "../../util/config";
+import { getProfileApi } from "../../redux/reducers/userReducer";
 
 export default function Detail() {
   // Create useState size and quantity
   const [sizeState, setSizeState] = useState("36");
   const [quantityState, setQuantityState] = useState(1);
+  const param = useParams();
+  const dispatch = useDispatch();
+  const { productDetail } = useSelector((state) => state.productReducer);
+  
 
-  // change quantity shoes
+  useEffect(() => {
+    let { id } = param;
+    dispatch(getProductDetail(id));
+  }, [param.id]);
+
+  const renderProductDetail = (productDetail) => {
+    if (!productDetail) {
+      return <></>;
+    }
+    return (
+      <>
+        <div className="col-left">
+          <div className="detail-left">
+            <img src={productDetail.image} alt="..." />
+          </div>
+        </div>
+        <div className="col-right">
+          <div className="detail-right">
+            <h3>{productDetail.name}</h3>
+            <p>{productDetail.description}</p>
+            <span>Avaiable size</span>
+            <div className="size" id="size-list">
+              {productDetail.size ? (
+                renderProductSize(productDetail.size)
+              ) : (
+                <></>
+              )}
+            </div>
+            <h1>{productDetail.price}$</h1>
+            <div className="changeSize">
+              <div
+                className="enhance"
+                onClick={() => {
+                  handleChangeQuantity(1);
+                }}
+              >
+                <p>+</p>
+              </div>
+              <p>{quantityState}</p>
+              <div
+                className="enhance"
+                onClick={() => {
+                  handleChangeQuantity(-1);
+                }}
+              >
+                <p>-</p>
+              </div>
+            </div>
+            <button className="addBTN" onClick={handleAddToCart}>
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  const handleAddToCart = () => {
+    if (!getStore(USER_LOGIN)) {
+      dispatch(getProfileApi());
+    }
+    dispatch(addToCart({ ...productDetail, sizeState, quantityState }));
+  };
+
   const handleChangeQuantity = (number) => {
     if (quantityState < 2 && number === -1) {
       return alert("Không thể chỉnh số lượng dưới 1");
@@ -20,30 +88,12 @@ export default function Detail() {
     setQuantityState(quantityState + number);
   };
 
-  // update cart
-  const handleAddToCart = () => {
-    if (!getStore(USER_LOGIN)) {
-      dispatch(getProductApi());
-    }
-    dispatch(addProd({ ...productDetail, sizeState, quantityState }));
-  };
-
-
-
-
-
-
-
-
-
-
-  // changde state size shoes 
   const renderProductSize = (listSize) => {
     return listSize.map((size, index) => {
       return (
         <div key={index}>
           <div
-            className={"size-num " + (sizeState === size ? "active-size":"")}
+            className={"size-num " + (sizeState === size ? "active-size" : "")}
             onClick={() => {
               handleChangeSize(size);
             }}
@@ -59,151 +109,101 @@ export default function Detail() {
     setSizeState(size);
   };
 
-
-  const { productDetail } = useSelector((state) => state.productReducer);
-  const dispatch = useDispatch();
-
-  const params = useParams();
-
-  // Add cart on shopping cart
-  const addToCart = (prod) => {
-    const action = addProd(prod);
-    dispatch(action);
+  const renderRelateProduct = (relatedList) => {
+    return relatedList.map((item, index) => {
+      return (
+        <div className="col item" key={index}>
+          <div
+            className="card mx-auto mt-lg-5 mt-md-4 mt-sm-2"
+            style={{
+              backgroundColor: "#F8F8F8",
+              border: "none",
+              borderRadius: 0,
+            }}
+          >
+            <img
+              src={item.image}
+              alt="..."
+              className="m-auto mt-4"
+              width="220px"
+            />
+            {renderHeart()}
+            <div className="card-body">
+              <h5 className="card_name_detail">{item.name}</h5>
+              <p className="card-text">
+                {item.description.length > 30
+                  ? `${item.description.substring(0, 30)}...`
+                  : item.description}
+              </p>
+            </div>
+            <div className="p-0" style={{ height: 64 }}>
+              <div className="d-flex justify-content-center align-items-center text-center h-100">
+                <div
+                  className="d-flex justify-content-center align-items-center col h-100"
+                  style={{ backgroundColor: "#E1B067" }}
+                >
+                  <NavLink
+                    to={`/detail/${item.id}`}
+                    className="m-0 text-black"
+                    style={{
+                      fontWeight: 200,
+                      fontSize: 24,
+                      textDecoration: "none",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Buy now
+                  </NavLink>
+                </div>
+                <div
+                  className="d-flex justify-content-center align-items-center col h-100"
+                  style={{ backgroundColor: "#DEDDDC" }}
+                >
+                  <p
+                    className="m-0"
+                    style={{ fontWeight: 600, fontSize: 24, lineHeight: 29 }}
+                  >
+                    {item.price}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    });
   };
 
-  const getProductDetailApi = () => {
-    let { id } = params;
-    const action = getProductDetail(id);
-    dispatch(action);
-  };
-  // Render size
-  //render size giay
-  // const renderSize = () => {
-  //   return productDetail.size?.map((n, index) => {
-  //     return (
-  //       <option value={n} key={index}>{n}
-  //       </option>
-  //     );
-  //   });
-  // };
-
-  //render lai trang moi lan them san pham moi
-  useEffect(() => {
-    getProductDetailApi();
-    window.scrollTo(0, 10);
-  }, [params.id]);
-
-  // Render icon heart
   const renderHeart = () => {
     return (
       <>
         <FontAwesomeIcon icon="fa-solid fa-heart" className="heart" />
       </>
     );
-  };  
+  };
 
   return (
-    <div className="container">
-      <div className="row mt-5 justify-content-between">
-        <div className="col-lg-4 col-12">
-          <img
-            className="w-100"
-            src={productDetail.image}
-            alt={productDetail.name}
-          />
-        </div>
-        <div className="col-lg-6 col-12">
-          <div className="row mb-3 ">
-            <h4 className="col-lg-9 col-12">{productDetail.name}</h4>
-              {/* <p className="col-lg-2 col-12 fw-semibold fs-5">
-                {productDetail.price}$
-              </p> */}
+    <div>
+      <div>
+        <section className="detail">
+          <div className="container">
+            <div className="row-detail" id="item-detail">
+              {renderProductDetail(productDetail)}
+            </div>
           </div>
-          <p className="mb-4">{productDetail.description}</p>
-          <div className="size" id="size-list">
-              {productDetail.size ? (
-                renderProductSize(productDetail.size)
+        </section>
+        <section className="product mb-lg-5 mb-md-4 mb-sm-2">
+          <div className="container">
+            <h2 className="text-center">- Relate Product -</h2>
+            <div className="row" id="product-row">
+              {productDetail.relatedProducts ? (
+                renderRelateProduct(productDetail.relatedProducts)
               ) : (
                 <></>
               )}
             </div>
-            <p className="card_price_detail col-12 fs-5">
-              {productDetail.price}$
-            </p>
-          {/* <select className="form-select" aria-label="Default select example">
-            <option selected>Select Size</option>
-            <option value="36">36</option>
-            <option value="37">37</option>
-            <option value="38">38</option>
-            <option value="39">39</option>
-            <option value="40">40</option>
-            <option value="41">41</option>
-            <option value="42">42</option>
-            {renderSize()}
-          </select> */}
-          <div className="mt-3">
-            <button className="gain btn btn-light me-2" onClick={() => {
-              handleChangeQuantity(1)
-            }}>+</button>
-            <span>{quantityState}</span>
-            <button className="gain btn btn-light ms-2" onClick={() => {
-              handleChangeQuantity(-1)
-            }}>-</button>
           </div>
-          <button
-            className="addToCart btn btn-dark mt-3"
-            onClick={() => {
-              addToCart(productDetail);
-            }}
-          >
-            Add to Cart
-          </button>
-        </div>
-      </div>
-      <h3 className="text-center m-4">-Related Product-</h3>
-      <div className="row mt-2">
-        {/*toán tử ?: optional chaining */}
-        {productDetail.relatedProducts?.map((item, index) => {
-          console.log(productDetail.relatedProducts[index].id);
-          return (
-            // <div className="col-4 mt-2 " key={index}>
-            //   <div className="card shadow p-3 mb-5 bg-body rounded border-white">
-            //     <img src={item.image} alt={item.name} />
-            //     <div className="card-body">
-            //       <div className="d-flex flex-column">
-            //         <div>
-            //           <p className="fw-semibold">{item.name}</p>
-            //           <p className="fw-semibold">{item.price}$</p>
-            //         </div>
-            //         <NavLink className="btn btn-dark" to={`/detail/${item.id}`}>
-            //           View detail
-            //         </NavLink>
-            //       </div>
-            //     </div>
-            //   </div>
-            // </div>
-            <div className="form_Product col-lg-4 col-12 mt-2" key={index}>
-          <div className="Card_Product card shadow bg-body rounded border-white">
-            {renderHeart()}
-            <img src={item.image} alt={item.name} />
-            <div className="card-body">
-              <div className="card_infor d-flex flex-column">
-                <div>
-                  <p className="card_name">{item.name}</p>
-                  <p className="card_des fw-semibold">{item.description}</p>
-                </div>
-              </div>
-            </div>
-                <div className='d-flex'>
-                <NavLink className="card_detail flex-fill btn btn-dark" to={`/detail/${item.id}`}>
-                  Buy now
-                </NavLink>
-                <p className="card_price p-2 flex-fill">{item.price}$</p>
-                </div>
-          </div>
-        </div>
-          );
-        })}
+        </section>
       </div>
     </div>
   );

@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
+import { getProfileApi } from "./userReducer";
 import { http } from "../../util/config";
 
 const initialState = {
   arrProduct: [],
   productDetail: {},
   cart: [],
+  // cart: []
+
 };
 
 const productReducer = createSlice({
@@ -25,53 +28,89 @@ const productReducer = createSlice({
       const productDetail = action.payload;
       state.productDetail = productDetail;
     },
-    //them vao cart
-    addProd: (state, action) => {
-      let prod = action.payload;
-      let cartUpdate = [...state.cart];
-      prod = { ...prod, count:1 };
-      let sp = cartUpdate.find((p) => p.id === prod.id);
-      if (sp) {
-        sp.count += 1;
+    // //them vao cart
+    // addProd: (state, action) => {
+    //   let prod = action.payload;
+    //   let cartUpdate = [...state.cart];
+    //   prod = { ...prod, count:1 };
+    //   let sp = cartUpdate.find((p) => p.id === prod.id);
+    //   if (sp) {
+    //     sp.count += 1;
+    //   } else {
+    //     cartUpdate.push(prod);
+    //   }
+
+    //   state.cart = cartUpdate;      
+    // },
+    // //xoa khoi cart
+    // deleteProd: (state, action) => {
+    //   let delProdId = action.payload;
+    //   let cartUpdate = [...state.cart];
+    //   cartUpdate = cartUpdate.filter((sp) => sp.id !== delProdId);
+    //   state.cart = cartUpdate;
+    // },
+    // //tang giam so luong
+    // increaseDecrease: (state, action) => {
+    //   let { idClick, num } = action.payload;
+    //   //console.log({ idClick, num });
+    //   let cartUpdate = [...state.cart]
+    //   let sp =cartUpdate.find(sp => sp.id === idClick)
+    //   if(sp){
+    //     sp.count += num
+    //     if(sp.count < 1){
+    //       if(window.confirm('Xóa khỏi giỏ hàng')){
+    //         cartUpdate = cartUpdate.filter(sp => sp.id !== idClick)
+    //       }else {
+    //         sp.count -= num
+    //       }
+    //     }
+    //   }
+    //   state.cart = cartUpdate
+    // },
+
+    addToCart: (state, action) => {
+      let index = state.cart.findIndex(
+        (i) => i.id === action.payload.id
+      );
+      if (index === -1) {
+        state.cart.push(action.payload);
       } else {
-        cartUpdate.push(prod);
+        state.cart[index].quantityState += action.payload.quantityState;
       }
-
-      state.cart = cartUpdate;      
     },
-    //xoa khoi cart
-    deleteProd: (state, action) => {
-      let delProdId = action.payload;
-      let cartUpdate = [...state.cart];
-      cartUpdate = cartUpdate.filter((sp) => sp.id !== delProdId);
-      state.cart = cartUpdate;
-    },
-    //tang giam so luong
-    increaseDecrease: (state, action) => {
-      let { idClick, num } = action.payload;
-      //console.log({ idClick, num });
-      let cartUpdate = [...state.cart]
-      let sp =cartUpdate.find(sp => sp.id === idClick)
-      if(sp){
-        sp.count += num
-        if(sp.count < 1){
-          if(window.confirm('Xóa khỏi giỏ hàng')){
-            cartUpdate = cartUpdate.filter(sp => sp.id !== idClick)
-          }else {
-            sp.count -= num
-          }
-        }
-      }
-      state.cart = cartUpdate
-    },
-
     clearListCartTempAction: (state, action) => {
       state.cart = [];
     },
+    changeQuantity: (state, action) => {
+      console.log("action", action.payload);
+      let index = state.cart.findIndex(
+        (i) => i.id === action.payload[1]
+      );
+      if (index !== -1) {
+        state.cart[index].quantityState += action.payload[0];
+      }
+    },
+    DeleteCartAction: (state, action) => {
+      let newcart = state.cart.filter(
+        (i) => i.id !== action.payload
+      );
+      state.cart = newcart;
+    },
+
+    submitOrderCart: (state, action) => {
+      let newcart = [...state.cart];
+      console.log(action.payload.orderDetail);
+      action.payload.orderDetail.forEach((i, index) => {
+        newcart = newcart.filter((j) => j.id !== i.productId);
+      });
+      console.log("newcart", newcart);
+      state.cart = newcart;
+    },
+
   },
 });
 
-export const { getProduct, getDetail, addProd, deleteProd, increaseDecrease, clearListCartTempAction } =
+export const { getProduct, getDetail, addToCart, clearListCartTempAction, changeQuantity, DeleteCartAction, submitOrderCart } =
   productReducer.actions;
 
 export default productReducer.reducer;
@@ -98,6 +137,20 @@ export const getProductDetail = (id) => {
       //Buoc 3: Sau khi co du lieu dispatch lan 2
       const action = getDetail(result.data.content);
       dispatch(action);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const postOrderProductApi = (order) => {
+  return async (dispatch) => {
+    try {
+      const result = await http.post("/Users/order", order);
+      console.log(result);
+      alert("Đặt hàng thành công!");
+      dispatch(submitOrderCart(order));
+      dispatch(getProfileApi());
     } catch (err) {
       console.log(err);
     }

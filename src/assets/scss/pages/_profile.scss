@@ -85,23 +85,23 @@
     }
   }
   .profile-under {
-    // .container {
-    //   .ant-tabs-tab:hover {
-    //     color: #dd2aed;
-    //   }
-    //   .ant-tabs-tab-btn {
-    //     font-size: $text-3xl;
-    //     &:hover {
-    //       color: #dd2aed;
-    //     }
-    //   }
-    //   .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-    //     color: #dd2aed;
-    //   }
-    //   th{
-    //     background-color: #d9d9d9;
-    //   }
-    // }
+    .container {
+      .ant-tabs-tab:hover {
+        color: #dd2aed;
+      }
+      .ant-tabs-tab-btn {
+        font-size: $text-3xl;
+        &:hover {
+          color: #dd2aed;
+        }
+      }
+      .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+        color: #dd2aed;
+      }
+      th{
+        background-color: #d9d9d9;
+      }
+    }
   }
 }
 

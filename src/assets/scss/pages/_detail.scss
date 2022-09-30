@@ -1,40 +1,182 @@
 @import "../themes/variable";
 
+// .active-size {
+//     background: linear-gradient(270deg, rgba(62, 32, 248, 0.9) 5.14%, #d017ee 89.71%) !important;
+//     color: white !important;
+// }
+
+// .size {
+//     margin-top: 20px;
+//     display: flex;
+//     .size-num {
+//         cursor: pointer;
+//         display: flex;
+//         align-items: center;
+//         text-align: center;
+//         height: 50px;
+//         width: 50px;
+//         background: $bg-c4-light;
+//         margin-right: 21px;
+//         p {
+//             display: inline-block;
+//             @include text($text-3xl, $text-regular, $text-c1-primary);
+//             margin: 0 auto;
+//         }
+//     }
+// }
+// .card_price_detail {
+//     @include text($text-3xl, $text-bold, $bg-c1-red);
+//     margin-top: 15px;
+// }
+// .gain {
+//     background: $bg-c1-linear;
+//     // @include text($text-3xl,$text-bold,$bg-c2-linear);
+// }
+// .addToCart {
+//     background: $bg-c2-linear;
+//     width: 10rem;
+//     height: 3rem;
+//     @include text($text-2xl, $text-medium, $bg-c1-light);
+// }
+.card_name_detail {
+  @include text($text-24xl, $text-light, $text-c1-dark);
+}
 .active-size {
-    background: linear-gradient(270deg, rgba(62, 32, 248, 0.9) 5.14%, #d017ee 89.71%) !important;
+    background: $bg-c2-linear !important;
     color: white !important;
 }
-
-.size {
-    margin-top: 20px;
-    display: flex;
-    .size-num {
-        cursor: pointer;
+  
+  .detail {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    .container {
+      .row-detail {
         display: flex;
+        justify-content: center;
         align-items: center;
-        text-align: center;
-        height: 50px;
-        width: 50px;
-        background: $bg-c4-light;
-        margin-right: 21px;
-        p {
-            display: inline-block;
-            @include text($text-3xl, $text-regular, $text-c1-primary);
-            margin: 0 auto;
+        .col-left {
+          max-width: 35%;
+          margin-bottom: 78px;
+          .detail-left {
+            width: 334px;
+            height: 335px;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+              width: 220px;
+            }
+          }
         }
+        .col-right {
+          margin-left: 128px;
+          max-width: 55%;
+          .detail-right {
+            h3 {
+              @include text($text-3xl, $text-light, #000000);
+            }
+            p {
+                @include text($text-3xl, $text-regular, #000000);
+            }
+            span {
+                @include text($text-3xl, $text-bold, #000000);
+            }
+            .size {
+              margin-top: 15px;
+              display: flex;
+              .size-num {
+                border-radius: solid 5px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                height: 45px;
+                width: 45px;
+                background: $bg-c5-light;
+                margin-right: 15px;
+                p {
+                  display: inline-block;
+                  @include text($text-base, $text-bold, #000000);
+                  margin: auto;
+                }
+              }
+            }
+            h1 {
+              margin-top: 17px;
+              @include text($text-3xl, $text-bold, #000000);
+            }
+            .changeSize {
+              display: flex;
+              .enhance {
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 50px;
+                height: 50px;
+                background: linear-gradient(180deg, #6181f3 0%, #7c97f5 99.48%);
+  
+                p {
+                    @include text($text-3xl, $text-bold, #000000);
+                  margin: auto;
+                }
+              }
+              p {
+                @include text($text-3xl, $text-bold, #000000);
+                margin: auto;
+                margin-left: 25px;
+                margin-right: 25px;
+              }
+            }
+            .addBTN {
+              cursor: pointer;
+              margin-top: 7px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 175px;
+              height: 64px;
+              @include text($text-3xl, $text-bold, #000000);
+              background: linear-gradient(
+                270deg,
+                rgba(62, 32, 248, 0.9) 5.14%,
+                #d017ee 89.71%
+              );
+            }
+          }
+        }
+      }
     }
-}
-.card_price_detail {
-    @include text($text-3xl, $text-bold, $bg-c1-red);
-    margin-top: 15px;
-}
-.gain {
-    background: $bg-c1-linear;
-    // @include text($text-3xl,$text-bold,$bg-c2-linear);
-}
-.addToCart {
-    background: $bg-c2-linear;
-    width: 10rem;
-    height: 3rem;
-    @include text($text-2xl, $text-medium, $bg-c1-light);
-}
+    @media screen and (max-width: 768px) {
+      margin-top: 35px;
+    }
+    @media screen and (max-width: 576px) {
+      margin-top: 20px;
+    }
+  }
+  
+  .product {
+    margin-top: 46px;
+    .container {
+      h2 {
+        @include text($text-3xl, $text-bold, #000000);
+      }
+      .row {
+        .item {
+          .card {
+            width: 334px;
+            position: relative;
+            .heart {
+              color: red;
+              font-size: 35px;
+              position: absolute;
+              top: 30px;
+              right: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+  

@@ -293,7 +293,8 @@ export default function Profile() {
                   <div className="button btn-profile">
                     <div id="btnSubmit">
                       <button
-                        className="btn-submit btn btn-primary"
+                        type="submit"
+                        className="btn-submit"
                       >
                         Update
                       </button>
@@ -303,6 +304,27 @@ export default function Profile() {
               </div>
             </form>
           </div>
+        </div>
+      </section>
+      <section className="profile-under">
+        <div className="container">
+          <Tabs defaultActiveKey="1">
+            <Tabs.TabPane tab="Order history" key="1">
+              <>
+                <div className="history">{renderOrderTable(userLogin)}</div>
+                <div style={{ textAlign: "right" }}>
+                  <Pagination defaultCurrent={1} total={50} />
+                </div>
+              </>
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="Favorite" key="2">
+              <Table
+                columns={columns}
+                dataSource={data}
+                rowKey={obj => obj.id} 
+              />
+            </Tabs.TabPane>
+          </Tabs>
         </div>
       </section>
     </div>

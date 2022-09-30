@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './assets/scss/styles.scss';
-import Carts from './pages/Carts/Carts';
+import Cart from './pages/Cart/Cart';
 import Detail from './pages/Detail/Detail';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
@@ -14,10 +14,13 @@ import HomeTemplate from './templates/HomeTemplate';
 import {Provider} from 'react-redux'
 import { store } from './redux/configStore';
 
+import "antd/dist/antd.css";
+
 
 //history
 import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
+// import Cart from './pages/Cart/Cart';
 
 export const history = createBrowserHistory({ window });
 //Cấu hình react router dom
@@ -35,7 +38,7 @@ root.render(
           <Route path='detail'>
             <Route path=':id' element={<Detail />}></Route>
           </Route>
-          <Route path='carts' element={<Carts />}></Route>
+          <Route path='carts' element={<Cart />}></Route>
           <Route path='profile' element={<Profile />}></Route>
           <Route path='*' element={<Navigate to="" />}></Route>
         </Route>

@@ -9,31 +9,29 @@ export default function Header() {
   const { userLogin } = useSelector((state) => state.userReducer);
   const { cart } = useSelector((state) => state.productReducer);
   const dispatch = useDispatch();
-
-  const renderCart = () => {
-    if (!userLogin) {
-      return (
-        <>
-          <NavLink className="me-3" to={"/login"}>
-            <FontAwesomeIcon
-              icon="fa-solid fa-cart-shopping"
-              className="me-1"
-            />
-
-            <span>(0)</span>
-          </NavLink>
-        </>
-      );
-    }
-    return (
-      <>
-        <NavLink className="me-3" to={"/carts"}>
-          <FontAwesomeIcon icon="fa-solid fa-cart-shopping" className="me-1" />(
-          {/* {countCart(userLogin, cart)}) */}
-        </NavLink>
-      </>
-    );
-  };
+  // const renderCart = () => {
+  //   if (!userLogin) {
+  //     return (
+  //       <>
+  //         <NavLink className="me-3" to={"/login"}>
+  //           <FontAwesomeIcon
+  //             icon="fa-solid fa-cart-shopping"
+  //             className="me-1"
+  //           />
+  //           <span>(0)</span>
+  //         </NavLink>
+  //       </>
+  //     );
+  //   }
+  //   return (
+  //     <>
+  //       <NavLink className="me-3" to={"/carts"}>
+  //         <FontAwesomeIcon icon="fa-solid fa-cart-shopping" className="me-1" />(
+  //         {/* {countCart(userLogin, cart)}) */}
+  //       </NavLink>
+  //     </>
+  //   );
+  // };
   const renderLoginItem = () => {
     if (!userLogin) {
       return (
