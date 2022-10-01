@@ -2,12 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 import { getProfileApi } from "./userReducer";
 import { http } from "../../util/config";
+import _ from "lodash";
 
 const initialState = {
   arrProduct: [],
   productDetail: {},
   cart: [],
-  // cart: []
+  cartsort: [],
 
 };
 
@@ -107,10 +108,25 @@ const productReducer = createSlice({
       state.cart = newcart;
     },
 
+    getListCart: (state, action) => {
+      state.cartsort = action.payload;
+    },
+    sortCart: (state, action) => {
+      console.log("order:", action.payload);
+      let listSort = [...state.cartsort];
+      listSort = _.orderBy(
+        listSort,
+        ["price"],
+        [action.payload]
+      );
+      console.log("sorted: ", listSort);
+      state.cartsort = listSort;
+    },
+
   },
 });
 
-export const { getProduct, getDetail, addToCart, clearListCartTempAction, changeQuantity, DeleteCartAction, submitOrderCart } =
+export const { getProduct, getDetail, addToCart, clearListCartTempAction, changeQuantity, DeleteCartAction, submitOrderCart, getListCart , sortCart } =
   productReducer.actions;
 
 export default productReducer.reducer;
@@ -156,3 +172,15 @@ export const postOrderProductApi = (order) => {
     }
   };
 };
+
+export const searchProductApi = (keyword) => {
+  return async (dispatch) => {
+    try {
+      const result = await http.get(`/Product?keyword=${keyword}`);
+      dispatch(getListCart(result.data.content));
+    } catch (err) {
+      alert("Không tìm thấy sản phẩm");
+      console.log(err);
+    }
+  };
+}

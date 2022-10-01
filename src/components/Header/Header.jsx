@@ -121,6 +121,11 @@ export default function Header() {
                 Profile
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link text-white" to="/search">
+                Search
+              </NavLink>
+            </li>
 
             {/* <NavLink className="nav-link text-white" to="/profile">
                   Profile
