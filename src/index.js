@@ -14,7 +14,7 @@ import HomeTemplate from './templates/HomeTemplate';
 import {Provider} from 'react-redux'
 import { store } from './redux/configStore';
 
-import "antd/dist/antd.css";
+import 'antd/dist/antd.min.css';
 
 
 //history
