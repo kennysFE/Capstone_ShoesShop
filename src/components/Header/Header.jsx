@@ -10,29 +10,6 @@ export default function Header() {
   const { userLogin } = useSelector((state) => state.userReducer);
   const { cart } = useSelector((state) => state.productReducer);
   const dispatch = useDispatch();
-  // const renderCart = () => {
-  //   if (!userLogin) {
-  //     return (
-  //       <>
-  //         <NavLink className="me-3" to={"/login"}>
-  //           <FontAwesomeIcon
-  //             icon="fa-solid fa-cart-shopping"
-  //             className="me-1"
-  //           />
-  //           <span>(0)</span>
-  //         </NavLink>
-  //       </>
-  //     );
-  //   }
-  //   return (
-  //     <>
-  //       <NavLink className="me-3" to={"/carts"}>
-  //         <FontAwesomeIcon icon="fa-solid fa-cart-shopping" className="me-1" />(
-  //         {/* {countCart(userLogin, cart)}) */}
-  //       </NavLink>
-  //     </>
-  //   );
-  // };
   const renderLoginItem = () => {
     if (!userLogin) {
       return (
@@ -58,7 +35,6 @@ export default function Header() {
         <li className="nav-item">
           <NavLink to={"/profile"} className="nav-link text-white">
             {" "}
-            {/* <FontAwesomeIcon icon="fa-solid fa-user" className="me-1" /> */}
             {userLogin.name}
           </NavLink>
         </li>
@@ -68,10 +44,6 @@ export default function Header() {
             onClick={logOut}
             className="nav-link text-white"
           >
-            {/* <FontAwesomeIcon
-              icon="fa-solid fa-right-from-bracket"
-              className="me-1"
-            /> */}
             LogOut
           </NavLink>
         </li>
