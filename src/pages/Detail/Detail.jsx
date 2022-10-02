@@ -115,17 +115,12 @@ export default function Detail() {
         <div className="col item" key={index}>
           <div
             className="card mx-auto mt-lg-5 mt-md-4 mt-sm-2"
-            style={{
-              backgroundColor: "#F8F8F8",
-              border: "none",
-              borderRadius: 0,
-            }}
           >
             <img
               src={item.image}
               alt="..."
               className="m-auto mt-4"
-              width="220px"
+              width="240px"
             />
             {renderHeart()}
             <div className="card-body">
@@ -136,34 +131,27 @@ export default function Detail() {
                   : item.description}
               </p>
             </div>
-            <div className="p-0" style={{ height: 64 }}>
-              <div className="d-flex justify-content-center align-items-center text-center h-100">
+            <div className="card_infor p-0" style={{ height: 64 }}>
+              <div className="card_infor-detail d-flex justify-content-center align-items-center text-center h-100">
                 <div
-                  className="d-flex justify-content-center align-items-center col h-100"
-                  style={{ backgroundColor: "#E1B067" }}
+                  className="card_infor-buynow d-flex justify-content-center align-items-center col h-100"
                 >
                   <NavLink
                     to={`/detail/${item.id}`}
-                    className="m-0 text-black"
-                    style={{
-                      fontWeight: 200,
-                      fontSize: 24,
-                      textDecoration: "none",
-                      cursor: "pointer",
-                    }}
+                    className="card_buy"
                   >
                     Buy now
                   </NavLink>
                 </div>
                 <div
-                  className="d-flex justify-content-center align-items-center col h-100"
-                  style={{ backgroundColor: "#DEDDDC" }}
+                  className="card_infor-price d-flex justify-content-center align-items-center col h-100"
+                  
                 >
                   <p
-                    className="m-0"
-                    style={{ fontWeight: 600, fontSize: 24, lineHeight: 29 }}
+                    className="card_price-number m-0"
+                    
                   >
-                    {item.price}
+                    {item.price}$
                   </p>
                 </div>
               </div>

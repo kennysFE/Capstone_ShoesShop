@@ -49,7 +49,8 @@ export default function Register() {
 
   return (
     <div className="container mt-5 mb-5">
-      <h2 className="text-center fw-semibold m-5">-Register-</h2>
+      <h2 className="text m-5">-Register-</h2>
+      <hr />
       <form className="row g-3" onSubmit={frm.handleSubmit}>
         <div className="col-md-6 form-floating mb-4">
           <input
@@ -176,7 +177,7 @@ export default function Register() {
           </fieldset>
         </div>
         <div className="d-grid mt-4 mb-4">
-          <button className="btn btn-dark">Submit</button>
+          <button className="submit ">Submit</button>
         </div>
       </form>
     </div>

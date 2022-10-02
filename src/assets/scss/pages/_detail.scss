@@ -42,139 +42,168 @@
   @include text($text-24xl, $text-light, $text-c1-dark);
 }
 .active-size {
-    background: $bg-c2-linear !important;
-    color: white !important;
+  background: $bg-c2-linear !important;
+  color: white !important;
 }
-  
-  .detail {
-    margin-top: 50px;
-    margin-bottom: 30px;
-    .container {
-      .row-detail {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .col-left {
-          max-width: 35%;
-          margin-bottom: 78px;
-          .detail-left {
-            width: 334px;
-            height: 335px;
-            background-color: #f8f8f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            img {
-              width: 220px;
-            }
+
+.detail {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  .container {
+    .row-detail {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .col-left {
+        max-width: 35%;
+        margin-bottom: 78px;
+        .detail-left {
+          width: 334px;
+          height: 335px;
+          background-color: #f8f8f8;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 220px;
           }
         }
-        .col-right {
-          margin-left: 128px;
-          max-width: 55%;
-          .detail-right {
-            h3 {
-              @include text($text-3xl, $text-bold, $bg-c2-dark);
-            }
-            p {
-                @include text($text-24xl, $text-regular,$bg-c1-dark);
-            }
-            span {
-                @include text($text-2xl, $text-bold,$text-c2-dark);
-            }
-            .size {
-              margin: 15px 0 0 0 ;
-              display: flex;
-              .size-num {
-                border-radius: solid 5px;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                text-align: center;
-                height: 45px;
-                width: 45px;
-                background: $bg-c5-light;
-                margin-right: 15px;
-                p {
-                  display: inline-block;
-                  @include text($text-24xl, $text-bold, #000000);
-                  margin: auto;
-                }
-              }
-            }
-            h1 {
-              margin-top: 15px;
-              @include text($text-3xl, $text-bold,$bg-c1-dark);
-            }
-            .changeSize {
-              display: flex;
-              .enhance {
-                border-radius: 5px;
-                position: relative;
-                cursor: pointer;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 30px;
-                height: 30px;
-                background: $bg-c3-light;
-                p {
-                    position: absolute;
-                    @include text($text-2xl, $text-light, $bg-c1-dark);
-                }
-              }
-                p {
-                @include text($text-2xl, $text-bold, $bg-c1-dark);
-                margin: auto;
-                margin-left: 15px;
-                margin-right: 15px;
-              }
-            }
-            .addBTN {
+      }
+      .col-right {
+        margin-left: 128px;
+        max-width: 55%;
+        .detail-right {
+          h3 {
+            @include text($text-3xl, $text-bold, $bg-c2-dark);
+          }
+          p {
+            @include text($text-xl, $text-regular, $bg-c1-dark);
+          }
+          span {
+            @include text($text-2xl, $text-bold, $text-c2-dark);
+          }
+          .size {
+            margin: 15px 0 0 0;
+            display: flex;
+            .size-num {
+              border-radius: solid 5px;
               cursor: pointer;
-              margin-top: 7px;
+              display: flex;
+              align-items: center;
+              text-align: center;
+              height: 45px;
+              width: 45px;
+              background: $bg-c5-light;
+              margin-right: 15px;
+              p {
+                display: inline-block;
+                @include text($text-24xl, $text-bold, #000000);
+                margin: auto;
+              }
+            }
+          }
+          h1 {
+            margin-top: 15px;
+            @include text($text-3xl, $text-bold, $bg-c1-red);
+          }
+          .changeSize {
+            display: flex;
+            .enhance {
+              border-radius: 5px;
+              position: relative;
+              cursor: pointer;
               display: flex;
               justify-content: center;
               align-items: center;
-              width: 200px;
-              height: 54px;
-              @include text($text-2xl, $text-medium, $bg-c1-dark);
-              background: $bg-c2-linear;
-              border-radius: 5px;
+              width: 30px;
+              height: 30px;
+              background: $bg-c3-light;
+              p {
+                position: absolute;
+                @include text($text-2xl, $text-light, $bg-c1-dark);
+              }
+            }
+            p {
+              @include text($text-2xl, $text-bold, $bg-c1-dark);
+              margin: auto;
+              margin-left: 15px;
+              margin-right: 15px;
             }
           }
-        }
-      }
-    }
-    @media screen and (max-width: 768px) {
-      margin-top: 35px;
-    }
-    @media screen and (max-width: 576px) {
-      margin-top: 20px;
-    }
-  }
-  
-  .product {
-    margin-top: 46px;
-    .container {
-      h2 {
-        @include text($text-3xl, $text-bold, #000000);
-      }
-      .row {
-        .item {
-          .card {
-            width: 334px;
-            position: relative;
-            .heart {
-              color: red;
-              font-size: 35px;
-              position: absolute;
-              top: 30px;
-              right: 30px;
-            }
+          .addBTN {
+            cursor: pointer;
+            margin-top: 7px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 54px;
+            @include text($text-2xl, $text-medium, $bg-c1-light);
+            background: $bg-c2-linear;
+            border-radius: 5px;
           }
         }
       }
     }
   }
-  
+}
+
+.product {
+  margin-top: 46px;
+  .container {
+    h2 {
+      @include text($text-3xl, $text-bold, #000000);
+    }
+    .row {
+      .item {
+        .card {
+          background-color: $bg-c2-light;
+          border: none;
+          border-radius: 0px;
+          width: 380px;
+          position: relative;
+          .heart {
+            color: red;
+            font-size: 35px;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+          }
+          .card-body {
+            .card_name_detail {
+              @include text($text-24xl, $text-light, $text-c1-dark);
+            }
+            .card-text {
+              @include text($text-2xl, $text-bold, $text-c2-dark);
+            }
+            }
+          }
+          .card_infor {
+            .card_infor-detail {
+              .card_infor-buynow {
+                background: $bg-c1-brown;
+                border-radius: 10px;
+                .card_buy {
+                  border-radius: 10px;
+                  margin: 0 auto;
+                  width: 100%;
+                  height: 60%;
+                  @include text($text-24xl, $text-light, $bg-c2-dark);
+                  cursor: pointer;
+                }
+              }
+              .card_infor-price {
+                background: $bg-c3-light;
+                border-radius: 10px;
+                .card_price-number {
+                  @include text($text-24xl, $text-semiBold, $bg-c2-dark);
+                  // line-height: 20;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+

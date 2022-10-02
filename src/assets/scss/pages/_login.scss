@@ -1,0 +1,52 @@
+@import '../themes/variable';
+
+
+.container {
+    h2 {
+        margin-top: 30px;
+        text-align: start;
+        @include text($text-3xl, $text-bold, $bg-c1-dark)
+    }
+    hr {
+        width: 100%; 
+    }
+}
+
+.box_signup {
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+        .join_us {
+            width: 15%;
+            p {
+                @include text($text-2xl, $text-medium, blue);
+
+            }
+        }
+        .button_signup {
+            width: 30%;
+            // width: 170px;
+            height: 50px;
+            font-weight: $text-medium;
+            font-size: $text-base;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 1.25px;
+            text-transform: uppercase;
+            color: $bg-c1-light;
+            background: $bg-c2-linear;
+            justify-content: center;
+            box-shadow: 2px 2px 10px $bg-c2-dark;
+            // border: $bg-c2-linear;
+            border-radius: 50px;
+            // margin-left: 50%;
+            padding: 16px 28px;
+            margin-bottom: 10px;
+        }
+        .button_signup:hover {
+            @include text($text-base, $text-medium, $bg-c1-dark);
+            background-color: $bg-c2-linear;
+            opacity: 0.9;
+        }
+    }

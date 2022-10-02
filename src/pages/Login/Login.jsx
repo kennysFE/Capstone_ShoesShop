@@ -29,17 +29,18 @@ export default function Login() {
     },
   });
 
-    // response for facebook login
-    const responseFacebook = (response) => {
-      console.log(response);
-      dispatch(fbLoginApi(response));
-    };
+  // response for facebook login
+  const responseFacebook = (response) => {
+    console.log(response);
+    dispatch(fbLoginApi(response));
+  };
 
   return (
     <div className="container">
-      <div className="form-signin w-100 m-auto">
+      <h2 className=" mb-5">Login</h2>
+      <hr />
+      <div className="form-signin w-50 m-auto">
         <form className="mt-5 mb-5" onSubmit={frm.handleSubmit}>
-          <h2 className=" mb-5 fw-semibold text-center">-Please Sign In-</h2>
           <div className="form-floating">
             <input
               type="email"
@@ -81,16 +82,13 @@ export default function Login() {
               <input type="checkbox" defaultValue="remember-me" /> Remember me
             </label>
           </div>
-          <button className="w-100 btn btn-lg btn-dark mt-3 mb-3">
-            Sign in
-          </button>
-          <p className="mt-5 mb-5 text-muted text-center">
-            Not a Member? 
-            <NavLink to="/register" className="text-muted ms-1">
-              Join Us
+          <div className="box_signup ">
+            <NavLink to="/register" className=" join_us text-muted ms-1">
+              <p>Join Us</p>
             </NavLink>
-          </p>
-        </form>
+            <button className="button_signup ">Sign in</button>
+          </div>
+        </form>       
       </div>
     </div>
   );
