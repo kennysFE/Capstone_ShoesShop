@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Capstone_ShoesShop/static/css/main.547dc49e.css",
+    "main.js": "/Capstone_ShoesShop/static/js/main.09c34b48.js",
+    "index.html": "/Capstone_ShoesShop/index.html",
+    "main.547dc49e.css.map": "/Capstone_ShoesShop/static/css/main.547dc49e.css.map",
+    "main.09c34b48.js.map": "/Capstone_ShoesShop/static/js/main.09c34b48.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.547dc49e.css",
+    "static/js/main.09c34b48.js"
+  ]
+}

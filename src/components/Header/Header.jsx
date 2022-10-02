@@ -1,4 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { library } from "@fortawesome/fontawesome-svg-core";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -57,7 +58,7 @@ export default function Header() {
         <li className="nav-item">
           <NavLink to={"/profile"} className="nav-link text-white">
             {" "}
-            <FontAwesomeIcon icon="fa-solid fa-user" className="me-1" />
+            {/* <FontAwesomeIcon icon="fa-solid fa-user" className="me-1" /> */}
             {userLogin.name}
           </NavLink>
         </li>
@@ -67,10 +68,10 @@ export default function Header() {
             onClick={logOut}
             className="nav-link text-white"
           >
-            <FontAwesomeIcon
+            {/* <FontAwesomeIcon
               icon="fa-solid fa-right-from-bracket"
               className="me-1"
-            />
+            /> */}
             LogOut
           </NavLink>
         </li>
