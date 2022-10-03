@@ -33,7 +33,7 @@ export default function Carousel() {
             <img
               src="https://www.glab.vn/storage/uploads/advert/5ee88f140efd4.jpg"
               width="100%"
-              height="auto"
+              height="500px"
               alt="..."
             />
           </div>
@@ -41,9 +41,9 @@ export default function Carousel() {
         <div className="carousel-item">
           <div>
             <img
-              src="https://www.glab.vn/storage/uploads/advert/62da3e54b0a26.jpg"
+              src="https://thesneakerhouse.com/wp-content/uploads/2019/12/clearance1.jpg"
               width="100%"
-              height="auto"
+              height="500px"
               alt="..."
             />
           </div>
@@ -53,7 +53,7 @@ export default function Carousel() {
             <img
               src="https://www.glab.vn/storage/uploads/advert/5f47b8a34de8f.jpg"
               width="100%"
-              height="auto"
+              height="500px"
               alt="..."
             />
           </div>
